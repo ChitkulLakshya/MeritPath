@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓 CollegeConnect - Find Your Perfect College Match</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <span class="logo">🎓</span>
+                <span class="logo-text">CollegeConnect</span>
+            </div>
+            <div class="user-greeting" id="user-greeting" style="display: none;">
+                <span>Welcome, <span id="user-name-display"></span>!</span>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Authentication Section -->
+    <div id="auth-section" class="auth-section">
+        <div class="auth-container">
+            <div class="auth-tabs">
+                <button class="tab-btn active" onclick="showTab('login')">Login</button>
+                <button class="tab-btn" onclick="showTab('register')">Register</button>
+            </div>
+
+            <!-- Login Form -->
+            <div id="login-tab" class="tab-content active">
+                <form id="login-form" class="auth-form">
+                    <h2>Login</h2>
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <div id="login-message" class="message"></div>
+                </form>
+            </div>
+
+            <!-- Register Form -->
+            <div id="register-tab" class="tab-content">
+                <form id="register-form" class="auth-form">
+                    <h2>Register</h2>
+                    <div class="form-group">
+                        <label for="register-username">Username</label>
+                        <input type="text" id="register-username" required minlength="3">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email</label>
+                        <input type="email" id="register-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <input type="password" id="register-password" required minlength="6">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                    <div id="register-message" class="message"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Section (Hidden initially) -->
+    <div id="main-content" class="main-content hidden">
+        <div class="content-wrapper">
+            <!-- Title Section -->
+            <div class="title-section">
+                <h1 class="main-title">Find Your Perfect College Match</h1>
+            </div>
+
+            <!-- Recommendation Form -->
+            <div class="form-container">
+                <form id="recommendation-form" class="recommendation-form">
+                    <div class="form-group">
+                        <label for="mcet-rank">MCET Rank</label>
+                        <input type="number" id="mcet-rank" required min="1" placeholder="Enter your MCET rank">
+                        <small class="helper-text">Lower rank is better (e.g., rank 100 is better than rank 1000)</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="intermediate-marks">Intermediate Marks (%)</label>
+                        <input type="number" id="intermediate-marks" required min="0" max="100" step="0.01" placeholder="Enter your percentage">
+                    </div>
+                    <div class="form-group">
+                        <label for="desired-course">Desired Course</label>
+                        <select id="desired-course" required>
+                            <option value="">Select a course</option>
+                            <option value="CSE">Computer Science Engineering (CSE)</option>
+                            <option value="ECE">Electronics and Communication Engineering (ECE)</option>
+                            <option value="MECH">Mechanical Engineering (MECH)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-large">Find Colleges</button>
+                </form>
+            </div>
+
+            <!-- Results Container -->
+            <div id="results-container" class="results-container hidden">
+                <h2 class="results-title">Recommended Colleges</h2>
+                <div id="results-count" class="results-count"></div>
+                <div id="colleges-list" class="colleges-list">
+                    <div class="no-results-placeholder">
+                        <p>No colleges found matching your criteria.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
