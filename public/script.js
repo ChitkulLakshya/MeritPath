@@ -1,123 +1,75 @@
 // Global state
 let currentUser = null;
 
-// Tab switching
-function showTab(tabName) {
-    // Hide all tabs
-    document.querySelectorAll('.tab-content').forEach(tab => {
-        tab.classList.remove('active');
-    });
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-
-    // Show selected tab
-    if (tabName === 'login') {
-        document.getElementById('login-tab').classList.add('active');
-        document.querySelectorAll('.tab-btn')[0].classList.add('active');
-    } else {
-        document.getElementById('register-tab').classList.add('active');
-        document.querySelectorAll('.tab-btn')[1].classList.add('active');
-    }
-}
-
-// Register form handler
-document.getElementById('register-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const messageDiv = document.getElementById('register-message');
-    messageDiv.textContent = '';
-    messageDiv.className = 'message';
-
-    const username = document.getElementById('register-username').value;
-    const email = document.getElementById('register-email').value;
-    const password = document.getElementById('register-password').value;
-
-    try {
-        const response = await fetch('/api/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username, email, password })
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-            messageDiv.textContent = 'Registration successful! Please login.';
-            messageDiv.className = 'message success';
-            document.getElementById('register-form').reset();
-            // Switch to login tab after 1 second
-            setTimeout(() => {
-                showTab('login');
-                document.getElementById('login-email').value = email;
-            }, 1000);
-        } else {
-            messageDiv.textContent = data.error || 'Registration failed';
-            messageDiv.className = 'message error';
-        }
-    } catch (error) {
-        messageDiv.textContent = 'Network error. Please try again.';
-        messageDiv.className = 'message error';
-        console.error('Registration error:', error);
-    }
-});
-
 // Login form handler
-document.getElementById('login-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const messageDiv = document.getElementById('login-message');
-    messageDiv.textContent = '';
-    messageDiv.className = 'message';
+const loginForm = document.getElementById('login-form');
+if (loginForm) {
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const messageDiv = document.getElementById('login-message');
+        messageDiv.textContent = '';
+        messageDiv.className = 'message';
 
-    const email = document.getElementById('login-email').value;
-    const password = document.getElementById('login-password').value;
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
 
-    try {
-        const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email, password })
-        });
+        try {
+            const response = await fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            });
 
-        const data = await response.json();
+            const data = await response.json();
 
-        if (response.ok) {
-            currentUser = data.user;
-            messageDiv.textContent = 'Login successful!';
-            messageDiv.className = 'message success';
-            
-            // Show main content and hide auth section
-            setTimeout(() => {
-                document.getElementById('auth-section').classList.add('hidden');
-                document.getElementById('main-content').classList.remove('hidden');
-                document.getElementById('user-greeting').style.display = 'flex';
-                document.getElementById('user-name-display').textContent = currentUser.username;
-            }, 500);
-        } else {
-            messageDiv.textContent = data.error || 'Login failed';
+            if (response.ok) {
+                currentUser = data.user;
+                messageDiv.textContent = 'Login successful! Redirecting...';
+                messageDiv.className = 'message success';
+                
+                // Show main content and hide auth wrapper
+                setTimeout(() => {
+                    document.querySelector('.auth-wrapper').style.display = 'none';
+                    document.body.classList.remove('auth-page');
+                    document.getElementById('main-content').classList.remove('hidden');
+                    document.getElementById('user-greeting').style.display = 'flex';
+                    document.getElementById('user-name-display').textContent = currentUser.username;
+                }, 1000);
+            } else {
+                messageDiv.textContent = data.error || 'Login failed';
+                messageDiv.className = 'message error';
+            }
+        } catch (error) {
+            messageDiv.textContent = 'Network error. Please try again.';
             messageDiv.className = 'message error';
+            console.error('Login error:', error);
         }
-    } catch (error) {
-        messageDiv.textContent = 'Network error. Please try again.';
-        messageDiv.className = 'message error';
-        console.error('Login error:', error);
-    }
-});
+    });
+}
 
 // Logout function
 function logout() {
     currentUser = null;
-    document.getElementById('auth-section').classList.remove('hidden');
+    document.body.classList.add('auth-page');
+    const authWrapper = document.querySelector('.auth-wrapper');
+    if (authWrapper) {
+        authWrapper.style.display = 'flex';
+    }
     document.getElementById('main-content').classList.add('hidden');
     document.getElementById('user-greeting').style.display = 'none';
-    document.getElementById('login-form').reset();
-    document.getElementById('register-form').reset();
-    document.getElementById('recommendation-form').reset();
+    const loginForm = document.getElementById('login-form');
+    if (loginForm) {
+        loginForm.reset();
+    }
+    const recommendationForm = document.getElementById('recommendation-form');
+    if (recommendationForm) {
+        recommendationForm.reset();
+    }
     document.getElementById('results-container').classList.add('hidden');
-    showTab('login');
+    // Redirect to login page
+    window.location.href = 'index.html';
 }
 
 // Recommendation form handler

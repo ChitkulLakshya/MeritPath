@@ -3,74 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎓 CollegeConnect - Find Your Perfect College Match</title>
+    <title>Login - 🎓 CollegeConnect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <!-- Header -->
-    <header class="main-header">
-        <div class="header-content">
-            <div class="logo-section">
-                <span class="logo">🎓</span>
-                <span class="logo-text">CollegeConnect</span>
-            </div>
-            <div class="user-greeting" id="user-greeting" style="display: none;">
-                <span>Welcome, <span id="user-name-display"></span>!</span>
-                <button class="logout-btn" onclick="logout()">Logout</button>
-            </div>
+<body class="auth-page">
+    <!-- Auth Container -->
+    <div class="auth-wrapper">
+        <!-- Left Side - Hero Image -->
+        <div class="auth-hero">
+            <img src="https://i.postimg.cc/4xBcbxsc/planner.avif" alt="Student using phone" class="hero-image">
         </div>
-    </header>
 
-    <!-- Authentication Section -->
-    <div id="auth-section" class="auth-section">
-        <div class="auth-container">
-            <div class="auth-tabs">
-                <button class="tab-btn active" onclick="showTab('login')">Login</button>
-                <button class="tab-btn" onclick="showTab('register')">Register</button>
-            </div>
-
-            <!-- Login Form -->
-            <div id="login-tab" class="tab-content active">
+        <!-- Right Side - Login Form -->
+        <div class="auth-form-container">
+            <div class="auth-card">
+                <h1 class="auth-title">Welcome Back</h1>
+                <p class="auth-subtitle">Sign in to continue to CollegeConnect</p>
+                
                 <form id="login-form" class="auth-form">
-                    <h2>Login</h2>
                     <div class="form-group">
                         <label for="login-email">Email</label>
-                        <input type="email" id="login-email" required>
+                        <input type="email" id="login-email" placeholder="Enter your email" required>
                     </div>
                     <div class="form-group">
                         <label for="login-password">Password</label>
-                        <input type="password" id="login-password" required>
+                        <input type="password" id="login-password" placeholder="Enter your password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <div class="form-options">
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-black">Sign In</button>
                     <div id="login-message" class="message"></div>
                 </form>
-            </div>
 
-            <!-- Register Form -->
-            <div id="register-tab" class="tab-content">
-                <form id="register-form" class="auth-form">
-                    <h2>Register</h2>
-                    <div class="form-group">
-                        <label for="register-username">Username</label>
-                        <input type="text" id="register-username" required minlength="3">
-                    </div>
-                    <div class="form-group">
-                        <label for="register-email">Email</label>
-                        <input type="email" id="register-email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="register-password">Password</label>
-                        <input type="password" id="register-password" required minlength="6">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Register</button>
-                    <div id="register-message" class="message"></div>
-                </form>
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="register.html" class="auth-link">Register</a></p>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Main Content Section (Hidden initially) -->
     <div id="main-content" class="main-content hidden">
+        <!-- Header -->
+        <header class="main-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <span class="logo">🎓</span>
+                    <span class="logo-text">CollegeConnect</span>
+                </div>
+                <div class="user-greeting" id="user-greeting" style="display: none;">
+                    <span>Welcome, <span id="user-name-display"></span>!</span>
+                    <button class="logout-btn" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </header>
+
         <div class="content-wrapper">
             <!-- Title Section -->
             <div class="title-section">
@@ -96,6 +87,27 @@
                             <option value="CSE">Computer Science Engineering (CSE)</option>
                             <option value="ECE">Electronics and Communication Engineering (ECE)</option>
                             <option value="MECH">Mechanical Engineering (MECH)</option>
+                            <option value="EEE">Electrical and Electronics Engineering (EEE)</option>
+                            <option value="CIVIL">Civil Engineering</option>
+                            <option value="IT">Information Technology (IT)</option>
+                           <option value="BIOTECH">Biotechnology Engineering</option>
+                           <option value="CHEM">Chemical Engineering</option>
+                           <option value="PETRO">Petroleum Engineering</option>
+                           <option value="ROBOTICS">Robotics and Automation Engineering</option>
+                           <option value="AI">Artificial Intelligence & Machine Learning (AI & ML)</option>
+                           <option value="DS">Data Science Engineering</option>
+                           <option value="CYBER">Cyber Security Engineering</option>
+                           <option value="IOT">Internet of Things (IoT)</option>
+                           <option value="AGRI">Agricultural Engineering</option>
+                           <option value="AUTO">Automobile Engineering</option>
+                           <option value="BIOTECH">Biotechnology Engineering</option>
+                           <option value="CHEM">Chemical Engineering</option>
+                           <option value="PETRO">Petroleum Engineering</option>
+                           <option value="MINING">Mining Engineering</option>
+                           <option value="METALLURGY">Metallurgical Engineering</option>
+                           <option value="BIO_MED">Biomedical Engineering</option>
+                           <option value="ENV">Environmental Engineering</option>
+                           <option value="ROBOTICS">Robotics and Automation Engineering</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary btn-large">Find Colleges</button>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - 🎓 CollegeConnect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+    <!-- Auth Container -->
+    <div class="auth-wrapper">
+        <!-- Left Side - Hero Image -->
+        <div class="auth-hero">
+            <img src="https://via.placeholder.com/450x600.png" alt="Student using phone" class="hero-image">
+        </div>
+
+        <!-- Right Side - Register Form -->
+        <div class="auth-form-container">
+            <div class="auth-card">
+                <h1 class="auth-title">Create Account</h1>
+                <p class="auth-subtitle">Join CollegeConnect to find your perfect college match</p>
+                
+                <form id="register-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="register-username">Name</label>
+                        <input type="text" id="register-username" placeholder="Enter your name" required minlength="3">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email</label>
+                        <input type="email" id="register-email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <input type="password" id="register-password" placeholder="Create a password" required minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-confirm-password">Confirm Password</label>
+                        <input type="password" id="register-confirm-password" placeholder="Confirm your password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-black">Create Account</button>
+                    <div id="register-message" class="message"></div>
+                </form>
+
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="index.html" class="auth-link">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Register form handler
+        document.getElementById('register-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const messageDiv = document.getElementById('register-message');
+            messageDiv.textContent = '';
+            messageDiv.className = 'message';
+
+            const username = document.getElementById('register-username').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const confirmPassword = document.getElementById('register-confirm-password').value;
+
+            // Validate password match
+            if (password !== confirmPassword) {
+                messageDiv.textContent = 'Passwords do not match';
+                messageDiv.className = 'message error';
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    messageDiv.textContent = 'Registration successful! Redirecting to login...';
+                    messageDiv.className = 'message success';
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
+                } else {
+                    messageDiv.textContent = data.error || 'Registration failed';
+                    messageDiv.className = 'message error';
+                }
+            } catch (error) {
+                messageDiv.textContent = 'Network error. Please try again.';
+                messageDiv.className = 'message error';
+                console.error('Registration error:', error);
+            }
+        });
+    </script>
+</body>
+</html>
+
