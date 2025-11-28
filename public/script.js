@@ -134,12 +134,16 @@ function displayResults(data) {
     const resultsContainer = document.getElementById('results-container');
     const resultsCount = document.getElementById('results-count');
     const collegesList = document.getElementById('colleges-list');
+    const placeholder = document.getElementById('results-placeholder');
 
     resultsContainer.classList.remove('hidden');
+    if (placeholder) {
+        placeholder.classList.add('hidden');
+    }
 
     // Update count
     if (data.count === 0) {
-        resultsCount.textContent = '';
+        resultsCount.textContent = 'No colleges found matching your criteria.';
         collegesList.innerHTML = `
             <div class="no-results-placeholder">
                 <p>No colleges found matching your criteria.</p>

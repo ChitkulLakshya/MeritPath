@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - MeritPlan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="logo-group">
+            <span class="logo-icon">🎓</span>
+            <div>
+                <p class="brand-name">MeritPlan</p>
+                <p class="brand-tagline">MeritPlan</p>
+            </div>
+        </div>
+        <button class="logout-btn" onclick="window.location.href='index.html'">Logout</button>
+    </header>
+
+    <main class="dashboard-wrapper">
+        <section class="form-panel">
+            <div class="panel-card">
+                <h1>College Connect</h1>
+                <p class="panel-subtitle">Enter your details to find tailored college recommendations.</p>
+
+                <form id="dashboard-form" class="dashboard-form">
+                    <div class="form-group">
+                        <label for="mcet-rank">MCET Rank</label>
+                        <input type="number" id="mcet-rank" placeholder="Enter your MCET Rank" min="1" required>
+                        <small>Lower rank is better (e.g., rank 100 is better than rank 1000)</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="intermediate-marks">Intermediate Percentage (%)</label>
+                        <input type="number" id="intermediate-marks" placeholder="Enter your percentage" min="0" max="100" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="desired-course">Desired Course</label>
+                        <select id="desired-course" required>
+                            <option value="">Select a course</option>
+                            <option value="CSE">Computer Science Engineering (CSE)</option>
+                            <option value="ECE">Electronics and Communication Engineering (ECE)</option>
+                            <option value="MECH">Mechanical Engineering (MECH)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-black">Find Colleges</button>
+                    <div id="form-message" class="form-message"></div>
+                </form>
+            </div>
+        </section>
+
+        <section class="results-panel">
+            <div class="results-header">
+                <h2>Recommended Colleges</h2>
+                <p id="results-count">No colleges found yet.</p>
+            </div>
+            <div id="results-list" class="results-list">
+                <div class="results-placeholder">
+                    <p>Fill out the form to see recommended colleges tailored to your profile.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CollegeConnect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body class="dashboard-body">
+    <header class="dashboard-header">
+        <div class="header-logo">
+            <span class="logo-icon">🎓</span>
+            <span class="logo-text">CollegeConnect</span>
+        </div>
+        <nav class="header-nav">
+            <a href="index.html" class="nav-link">Logout</a>
+        </nav>
+    </header>
+
+    <main class="dashboard-layout">
+        <!-- Left Panel -->
+        <section class="panel form-panel">
+            <div class="panel-header">
+                <p class="panel-label">Plan Your Journey</p>
+                <h2>College Connect</h2>
+            </div>
+            <form id="dashboard-form" class="dashboard-form">
+                <div class="form-group">
+                    <label for="dashboard-mcet-rank">MCET Rank</label>
+                    <input type="number" id="dashboard-mcet-rank" name="mcet_rank" placeholder="Enter your rank" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="dashboard-inter-marks">Intermediate Percentage</label>
+                    <input type="number" id="dashboard-inter-marks" name="intermediate_marks" placeholder="Enter your percentage" min="0" max="100" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="dashboard-course">Course</label>
+                    <select id="dashboard-course" name="desired_course" required>
+                        <option value="">Select a course</option>
+                        <option value="CSE">Computer Science Engineering (CSE)</option>
+                        <option value="ECE">Electronics and Communication Engineering (ECE)</option>
+                        <option value="MECH">Mechanical Engineering (MECH)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-black">Find Colleges</button>
+                <p class="form-helper">Results will appear instantly on the right once you search.</p>
+                <div id="form-message" class="inline-message"></div>
+            </form>
+        </section>
+
+        <!-- Right Panel -->
+        <section class="panel results-panel">
+            <div class="panel-header">
+                <p class="panel-label">Recommendations</p>
+                <h2>Recommended Colleges</h2>
+            </div>
+            <div id="results-summary" class="results-summary">
+                Enter your details to get personalized recommendations.
+            </div>
+            <div id="results-list" class="results-list">
+                <!-- Dynamic results -->
+            </div>
+        </section>
+    </main>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
+

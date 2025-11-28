@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - 🎓 CollegeConnect</title>
+    <title>Login - 🎓 MeritPlan</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -47,8 +47,7 @@
     </div>
 
     <!-- Main Content Section (Hidden initially) -->
-    <div id="main-content" class="main-content hidden">
-        <!-- Header -->
+    <div id="main-content" class="page-shell hidden">
         <header class="main-header">
             <div class="header-content">
                 <div class="logo-section">
@@ -62,68 +61,68 @@
             </div>
         </header>
 
-        <div class="content-wrapper">
-            <!-- Title Section -->
-            <div class="title-section">
-                <h1 class="main-title">Find Your Perfect College Match</h1>
-            </div>
+        <div class="panel-layout">
+            <section class="form-panel">
+                <div class="panel-card">
+                    <p class="panel-eyebrow">Plan smarter</p>
+                    <h2 class="panel-title">College Connect</h2>
+                    <p class="panel-subtitle">Use your MCET score and academic profile to find the best-fit colleges instantly.</p>
 
-            <!-- Recommendation Form -->
-            <div class="form-container">
-                <form id="recommendation-form" class="recommendation-form">
-                    <div class="form-group">
-                        <label for="mcet-rank">MCET Rank</label>
-                        <input type="number" id="mcet-rank" required min="1" placeholder="Enter your MCET rank">
-                        <small class="helper-text">Lower rank is better (e.g., rank 100 is better than rank 1000)</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="intermediate-marks">Intermediate Marks (%)</label>
-                        <input type="number" id="intermediate-marks" required min="0" max="100" step="0.01" placeholder="Enter your percentage">
-                    </div>
-                    <div class="form-group">
-                        <label for="desired-course">Desired Course</label>
-                        <select id="desired-course" required>
-                            <option value="">Select a course</option>
-                            <option value="CSE">Computer Science Engineering (CSE)</option>
-                            <option value="ECE">Electronics and Communication Engineering (ECE)</option>
-                            <option value="MECH">Mechanical Engineering (MECH)</option>
-                            <option value="EEE">Electrical and Electronics Engineering (EEE)</option>
-                            <option value="CIVIL">Civil Engineering</option>
-                            <option value="IT">Information Technology (IT)</option>
-                           <option value="BIOTECH">Biotechnology Engineering</option>
-                           <option value="CHEM">Chemical Engineering</option>
-                           <option value="PETRO">Petroleum Engineering</option>
-                           <option value="ROBOTICS">Robotics and Automation Engineering</option>
-                           <option value="AI">Artificial Intelligence & Machine Learning (AI & ML)</option>
-                           <option value="DS">Data Science Engineering</option>
-                           <option value="CYBER">Cyber Security Engineering</option>
-                           <option value="IOT">Internet of Things (IoT)</option>
-                           <option value="AGRI">Agricultural Engineering</option>
-                           <option value="AUTO">Automobile Engineering</option>
-                           <option value="BIOTECH">Biotechnology Engineering</option>
-                           <option value="CHEM">Chemical Engineering</option>
-                           <option value="PETRO">Petroleum Engineering</option>
-                           <option value="MINING">Mining Engineering</option>
-                           <option value="METALLURGY">Metallurgical Engineering</option>
-                           <option value="BIO_MED">Biomedical Engineering</option>
-                           <option value="ENV">Environmental Engineering</option>
-                           <option value="ROBOTICS">Robotics and Automation Engineering</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-large">Find Colleges</button>
-                </form>
-            </div>
-
-            <!-- Results Container -->
-            <div id="results-container" class="results-container hidden">
-                <h2 class="results-title">Recommended Colleges</h2>
-                <div id="results-count" class="results-count"></div>
-                <div id="colleges-list" class="colleges-list">
-                    <div class="no-results-placeholder">
-                        <p>No colleges found matching your criteria.</p>
-                    </div>
+                    <form id="recommendation-form" class="standard-form">
+                        <div class="form-group">
+                            <label for="mcet-rank">MCET Rank</label>
+                            <input type="number" id="mcet-rank" required min="1" placeholder="Enter your MCET rank">
+                            <small class="helper-text">Lower rank is better (e.g., rank 100 is better than rank 1000)</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="intermediate-marks">Intermediate Marks (%)</label>
+                            <input type="number" id="intermediate-marks" required min="0" max="100" step="0.01" placeholder="Enter your percentage">
+                        </div>
+                        <div class="form-group">
+                            <label for="desired-course">Desired Course</label>
+                            <select id="desired-course" required>
+                                <option value="">Select a course</option>
+                                <option value="CSE">Computer Science Engineering (CSE)</option>
+                                <option value="ECE">Electronics and Communication Engineering (ECE)</option>
+                                <option value="MECH">Mechanical Engineering (MECH)</option>
+                                <option value="EEE">Electrical and Electronics Engineering (EEE)</option>
+                                <option value="CIVIL">Civil Engineering</option>
+                                <option value="IT">Information Technology (IT)</option>
+                                <option value="BIOTECH">Biotechnology Engineering</option>
+                                <option value="CHEM">Chemical Engineering</option>
+                                <option value="PETRO">Petroleum Engineering</option>
+                                <option value="ROBOTICS">Robotics and Automation Engineering</option>
+                                <option value="AI">Artificial Intelligence & Machine Learning (AI & ML)</option>
+                                <option value="DS">Data Science Engineering</option>
+                                <option value="CYBER">Cyber Security Engineering</option>
+                                <option value="IOT">Internet of Things (IoT)</option>
+                                <option value="AGRI">Agricultural Engineering</option>
+                                <option value="AUTO">Automobile Engineering</option>
+                                <option value="MINING">Mining Engineering</option>
+                                <option value="METALLURGY">Metallurgical Engineering</option>
+                                <option value="BIO_MED">Biomedical Engineering</option>
+                                <option value="ENV">Environmental Engineering</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-black">Find Colleges</button>
+                    </form>
                 </div>
-            </div>
+            </section>
+
+            <section class="results-panel">
+                <div class="results-header">
+                    <h2 class="results-title">Recommended Colleges</h2>
+                    <p id="results-count" class="results-count">Your recommendations will appear here.</p>
+                </div>
+
+                <div id="results-container" class="results-container hidden">
+                    <div id="colleges-list" class="colleges-list"></div>
+                </div>
+
+                <div id="results-placeholder" class="results-placeholder">
+                    <p>Your recommendations will appear here.</p>
+                </div>
+            </section>
         </div>
     </div>
 
