@@ -1,4 +1,4 @@
-// College data - 90 colleges total (30 CSE, 30 ECE, 30 MECH)
+// College data - 90 colleges total (30 CSE, 30 ECE, 30 MECH + other courses)
 const sampleColleges = [
     { "name": "JNTU College of Engineering", "location": "Hyderabad", "course": "CSE", "mcet_rank_cutoff": 520, "intermediate_marks_cutoff": 92, "affiliation": "State University", "fees": 85000 },
     { "name": "Osmania University Engineering College", "location": "Hyderabad", "course": "CSE", "mcet_rank_cutoff": 680, "intermediate_marks_cutoff": 90, "affiliation": "State University", "fees": 90000 },
@@ -50,31 +50,22 @@ const sampleColleges = [
     { "name": "Sridevi Women's Engineering College", "location": "Hyderabad", "course": "ECE", "mcet_rank_cutoff": 16000, "intermediate_marks_cutoff": 79, "affiliation": "Private", "fees": 105000 },
     { "name": "AVN Institute of Engineering & Technology", "location": "Ranga Reddy", "course": "ECE", "mcet_rank_cutoff": 17000, "intermediate_marks_cutoff": 80, "affiliation": "Private", "fees": 100000 },
     { "name": "Mahindra University Ecole Centrale", "location": "Hyderabad", "course": "ECE", "mcet_rank_cutoff": 3500, "intermediate_marks_cutoff": 89, "affiliation": "Private", "fees": 300000 },
-    { "name": "JNTU College of Engineering", "location": "Hyderabad", "course": "MECH", "mcet_rank_cutoff": 1500, "intermediate_marks_cutoff": 88, "affiliation": "State University", "fees": 85000 },
-    { "name": "Osmania University Engineering College", "location": "Hyderabad", "course": "MECH", "mcet_rank_cutoff": 2100, "intermediate_marks_cutoff": 86, "affiliation": "State University", "fees": 90000 },
-    { "name": "CBIT", "location": "Hyderabad", "course": "MECH", "mcet_rank_cutoff": 3000, "intermediate_marks_cutoff": 85, "affiliation": "Autonomous", "fees": 145000 },
-    { "name": "Vasavi College of Engineering", "location": "Hyderabad", "course": "MECH", "mcet_rank_cutoff": 3600, "intermediate_marks_cutoff": 84, "affiliation": "Autonomous", "fees": 140000 },
-    { "name": "VNR Vignana Jyothi Institute of Engineering", "location": "Hyderabad", "course": "MECH", "mcet_rank_cutoff": 4200, "intermediate_marks_cutoff": 83, "affiliation": "Autonomous", "fees": 150000 },
-    { "name": "Sreenidhi Institute of Science and Technology", "location": "Hyderabad", "course": "MECH", "mcet_rank_cutoff": 4800, "intermediate_marks_cutoff": 82, "affiliation": "Autonomous", "fees": 145000 },
-    { "name": "Gokaraju Rangaraju Institute of Engineering", "location": "Hyderabad", "course": "MECH", "mcet_rank_cutoff": 5300, "intermediate_marks_cutoff": 81, "affiliation": "Autonomous", "fees": 140000 },
-    { "name": "MLR Institute of Technology", "location": "Hyderabad", "course": "MECH", "mcet_rank_cutoff": 5800, "intermediate_marks_cutoff": 80, "affiliation": "Private", "fees": 135000 },
-    { "name": "Marri Laxman Reddy Engineering College", "location": "Hyderabad", "course": "MECH", "mcet_rank_cutoff": 6300, "intermediate_marks_cutoff": 79, "affiliation": "Private", "fees": 130000 },
-    { "name": "Institute of Aeronautical Engineering", "location": "Hyderabad", "course": "MECH", "mcet_rank_cutoff": 6900, "intermediate_marks_cutoff": 78, "affiliation": "Private", "fees": 125000 },
-    { "name": "KMIT", "location": "Hyderabad", "course": "MECH", "mcet_rank_cutoff": 7500, "intermediate_marks_cutoff": 77, "affiliation": "Autonomous", "fees": 140000 },
-    { "name": "BV Raju Institute of Technology", "location": "Narsapur", "course": "MECH", "mcet_rank_cutoff": 8200, "intermediate_marks_cutoff": 76, "affiliation": "Autonomous", "fees": 130000 },
-    { "name": "CVR College of Engineering", "location": "Ibrahimpatnam", "course": "MECH", "mcet_rank_cutoff": 8800, "intermediate_marks_cutoff": 75, "affiliation": "Private", "fees": 125000 },
-    { "name": "Anurag University", "location": "Hyderabad", "course": "MECH", "mcet_rank_cutoff": 9500, "intermediate_marks_cutoff": 74, "affiliation": "Private", "fees": 130000 },
-    { "name": "SR University", "location": "Warangal", "course": "MECH", "mcet_rank_cutoff": 10200, "intermediate_marks_cutoff": 73, "affiliation": "Private", "fees": 140000 },
-    { "name": "Kakatiya University Engineering College", "location": "Warangal", "course": "MECH", "mcet_rank_cutoff": 11000, "intermediate_marks_cutoff": 72, "affiliation": "State University", "fees": 85000 },
-    { "name": "Guru Nanak Institutions Technical Campus", "location": "Hyderabad", "course": "MECH", "mcet_rank_cutoff": 11800, "intermediate_marks_cutoff": 71, "affiliation": "Private", "fees": 120000 },
-    { "name": "CMR College of Engineering & Technology", "location": "Hyderabad", "course": "MECH", "mcet_rank_cutoff": 12600, "intermediate_marks_cutoff": 70, "affiliation": "Private", "fees": 110000 },
-    { "name": "Stanley College of Engineering", "location": "Hyderabad", "course": "MECH", "mcet_rank_cutoff": 13300, "intermediate_marks_cutoff": 71, "affiliation": "Private", "fees": 115000 },
-    { "name": "Vignana Bharathi Institute of Technology", "location": "Hyderabad", "course": "MECH", "mcet_rank_cutoff": 14000, "intermediate_marks_cutoff": 72, "affiliation": "Private", "fees": 120000 },
-    { "name": "Malla Reddy Engineering College", "location": "Hyderabad", "course": "MECH", "mcet_rank_cutoff": 15000, "intermediate_marks_cutoff": 73, "affiliation": "Private", "fees": 125000 },
-    { "name": "ACE Engineering College", "location": "Ghatkesar", "course": "MECH", "mcet_rank_cutoff": 16000, "intermediate_marks_cutoff": 74, "affiliation": "Private", "fees": 110000 },
-    { "name": "Sridevi Women's Engineering College", "location": "Hyderabad", "course": "MECH", "mcet_rank_cutoff": 17000, "intermediate_marks_cutoff": 75, "affiliation": "Private", "fees": 105000 },
-    { "name": "AVN Institute of Engineering & Technology", "location": "Ranga Reddy", "course": "MECH", "mcet_rank_cutoff": 18000, "intermediate_marks_cutoff": 76, "affiliation": "Private", "fees": 100000 },
-    { "name": "Mahindra University Ecole Centrale", "location": "Hyderabad", "course": "MECH", "mcet_rank_cutoff": 4000, "intermediate_marks_cutoff": 89, "affiliation": "Private", "fees": 300000 }
+    { "name": "Birla Institute of Technology and Science Pilani", "location": "Pilani", "course": "IT", "mcet_rank_cutoff": 150, "intermediate_marks_cutoff": 94, "affiliation": "Private", "fees": 310000 },
+    { "name": "Vellore Institute of Technology", "location": "Vellore", "course": "EEE", "mcet_rank_cutoff": 500, "intermediate_marks_cutoff": 85, "affiliation": "Private", "fees": 210000 },
+    { "name": "SRM Institute of Science and Technology", "location": "Chennai", "course": "AI", "mcet_rank_cutoff": 550, "intermediate_marks_cutoff": 84, "affiliation": "Private", "fees": 200000 },
+    { "name": "Manipal Institute of Technology", "location": "Manipal", "course": "DS", "mcet_rank_cutoff": 650, "intermediate_marks_cutoff": 82, "affiliation": "Private", "fees": 320000 },
+    { "name": "Amrita Vishwa Vidyapeetham", "location": "Coimbatore", "course": "CYBER", "mcet_rank_cutoff": 600, "intermediate_marks_cutoff": 83, "affiliation": "Private", "fees": 190000 },
+    { "name": "Anna University", "location": "Chennai", "course": "IOT", "mcet_rank_cutoff": 3000, "intermediate_marks_cutoff": 70, "affiliation": "State", "fees": 65000 },
+    { "name": "Delhi Technological University", "location": "New Delhi", "course": "BIOTECH", "mcet_rank_cutoff": 400, "intermediate_marks_cutoff": 90, "affiliation": "State", "fees": 170000 },
+    { "name": "Lovely Professional University", "location": "Phagwara", "course": "CHEM", "mcet_rank_cutoff": 6500, "intermediate_marks_cutoff": 65, "affiliation": "Private", "fees": 160000 },
+    { "name": "Chandigarh University", "location": "Chandigarh", "course": "PETRO", "mcet_rank_cutoff": 7000, "intermediate_marks_cutoff": 64, "affiliation": "Private", "fees": 155000 },
+    { "name": "Koneru Lakshmaiah University", "location": "Vijayawada", "course": "ROBOTICS", "mcet_rank_cutoff": 5000, "intermediate_marks_cutoff": 67, "affiliation": "Private", "fees": 140000 },
+    { "name": "GITAM University", "location": "Visakhapatnam", "course": "AGRI", "mcet_rank_cutoff": 4500, "intermediate_marks_cutoff": 68, "affiliation": "Private", "fees": 150000 },
+    { "name": "Sathyabama University", "location": "Chennai", "course": "AUTO", "mcet_rank_cutoff": 5500, "intermediate_marks_cutoff": 66, "affiliation": "Private", "fees": 145000 },
+    { "name": "St. Joseph's College of Engineering", "location": "Chennai", "course": "MINING", "mcet_rank_cutoff": 6000, "intermediate_marks_cutoff": 65, "affiliation": "Private", "fees": 130000 },
+    { "name": "Gayatri Vidya Parishad College", "location": "Visakhapatnam", "course": "METALLURGY", "mcet_rank_cutoff": 7000, "intermediate_marks_cutoff": 64, "affiliation": "Private", "fees": 125000 },
+    { "name": "BVRIT", "location": "Narsapur", "course": "BIO_MED", "mcet_rank_cutoff": 4500, "intermediate_marks_cutoff": 68, "affiliation": "Private", "fees": 140000 },
+    { "name": "Indian Institute of Technology Madras", "location": "Chennai", "course": "MECH", "mcet_rank_cutoff": 100, "intermediate_marks_cutoff": 95, "affiliation": "Central", "fees": 245000 }
 ];
 
-module.exports = sampleColleges;
+export default sampleColleges;

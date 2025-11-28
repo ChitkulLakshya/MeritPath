@@ -134,36 +134,37 @@ app.post('/api/recommendations', async (req, res) => {
     const { mcetRank, intermediateMarks, desiredCourse } = req.body;
 
     // Validation
-    if (!mcetRank || !intermediateMarks || !desiredCourse) {
+    if (mcetRank === undefined || intermediateMarks === undefined || !desiredCourse) {
       return res.status(400).json({ error: 'All fields are required' });
     }
 
     const rank = Number(mcetRank);
     const marks = Number(intermediateMarks);
-    const course = desiredCourse.toUpperCase();
+    const normalizedCourse = String(desiredCourse).trim().toLowerCase();
 
-    if (isNaN(rank) || isNaN(marks)) {
-      return res.status(400).json({ error: 'MCET rank and intermediate marks must be numbers' });
+    if (Number.isNaN(rank) || Number.isNaN(marks)) {
+      return res.status(400).json({ error: 'MCET rank and intermediate marks must be valid numbers' });
     }
 
-    if (!['CSE', 'ECE', 'MECH'].includes(course)) {
-      return res.status(400).json({ error: 'Invalid course. Must be CSE, ECE, or MECH' });
+    if (!normalizedCourse) {
+      return res.status(400).json({ error: 'Desired course is required' });
     }
 
     // Find matching colleges
-    // Logic: 
-    // - course matches desiredCourse
-    // - mcet_rank_cutoff >= user's mcetRank (allowing weaker rank to qualify)
-    // - intermediate_marks_cutoff <= user's intermediateMarks (user's marks are higher)
+    // Conditions:
+    // - Case-insensitive course comparison
+    // - User rank must be <= college cutoff
+    // - User marks must be >= college cutoff
+    const courseRegex = new RegExp(`^${normalizedCourse}$`, 'i');
     const colleges = await College.find({
-      course: course,
+      course: courseRegex,
       mcet_rank_cutoff: { $gte: rank },
       intermediate_marks_cutoff: { $lte: marks }
-    }).sort({ mcet_rank_cutoff: 1 }); // Sort by best match first (ascending order)
+    }).sort({ mcet_rank_cutoff: 1 });
 
     res.json({
       count: colleges.length,
-      colleges: colleges
+      colleges
     });
   } catch (error) {
     console.error('Recommendation error:', error);
